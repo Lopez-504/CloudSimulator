@@ -1,0 +1,504 @@
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.cloud-simulator {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 50px 30px;
+  box-sizing: border-box;
+  color: #17252f;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.cloud-simulator-header {
+  max-width: 850px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.cloud-simulator-header h2 {
+  margin: 0 0 12px;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.cloud-simulator-header p {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+
+/* =========================================================
+   MAIN GRID
+========================================================= */
+
+.simulator-layout {
+  display: grid;
+
+  grid-template-columns:
+    minmax(280px, 1fr)
+    minmax(280px, 1fr)
+    minmax(280px, 1fr);
+
+  gap: 25px;
+
+  align-items: stretch;
+}
+
+
+/* =========================================================
+   PANELS
+========================================================= */
+
+.bottle-panel,
+.controls-panel,
+.outputs-panel,
+.history-panel {
+  background: #ffffff;
+  border: 1px solid #dce5e9;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.controls-panel,
+.outputs-panel {
+  padding: 25px;
+}
+
+.controls-panel h3,
+.outputs-panel h3,
+.history-panel h3 {
+  margin-top: 0;
+  margin-bottom: 22px;
+  font-size: 1.2rem;
+}
+
+
+/* =========================================================
+   BOTTLE
+========================================================= */
+
+.bottle-panel {
+  min-height: 450px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px;
+}
+
+.bottle {
+  width: 220px;
+  height: 330px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bottle-neck {
+  width: 65px;
+  height: 45px;
+
+  border: 3px solid #8fa7b2;
+  border-bottom: none;
+
+  border-radius: 8px 8px 0 0;
+}
+
+.bottle-chamber {
+  position: relative;
+
+  width: 100%;
+  height: 280px;
+
+  overflow: hidden;
+
+  border: 3px solid #8fa7b2;
+  border-radius: 30px 30px 45px 45px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(225, 243, 249, 0.25),
+      rgba(185, 221, 232, 0.35)
+    );
+
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+.gas-particle {
+  position: absolute;
+
+  width: 7px;
+  height: 7px;
+
+  left: var(--particle-x);
+  top: var(--particle-y);
+
+  border-radius: 50%;
+
+  background: #4b7180;
+
+  animation:
+    particleMove
+    1.8s
+    infinite
+    ease-in-out;
+
+  animation-delay: var(--particle-delay);
+}
+
+@keyframes particleMove {
+
+  0% {
+    transform:
+      translate(0, 0);
+  }
+
+  25% {
+    transform:
+      translate(14px, -12px);
+  }
+
+  50% {
+    transform:
+      translate(-10px, 13px);
+  }
+
+  75% {
+    transform:
+      translate(12px, 9px);
+  }
+
+  100% {
+    transform:
+      translate(0, 0);
+  }
+
+}
+
+
+/* =========================================================
+   BOTTLE LABEL
+========================================================= */
+
+.bottle-label {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  pointer-events: none;
+
+  opacity: 0.75;
+}
+
+.bottle-label span {
+  font-size: 0.8rem;
+}
+
+.bottle-label strong {
+  font-size: 1.2rem;
+}
+
+.bottle-caption {
+  margin-top: 15px;
+
+  font-size: 0.9rem;
+
+  opacity: 0.6;
+}
+
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.control-group {
+  margin-bottom: 28px;
+}
+
+.control-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+.control-header label {
+  font-weight: 500;
+}
+
+.control-header span {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+
+/* Native range input */
+
+.control-group input[type="range"] {
+  width: 100%;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+.reset-button {
+  width: 100%;
+
+  margin-top: 5px;
+  padding: 11px 15px;
+
+  border: 1px solid #b8cbd2;
+  border-radius: 8px;
+
+  background: #f5f9fa;
+
+  cursor: pointer;
+
+  font-size: 0.95rem;
+
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease;
+}
+
+.reset-button:hover {
+  background: #e9f2f5;
+}
+
+.reset-button:active {
+  transform: scale(0.98);
+}
+
+
+/* =========================================================
+   OUTPUTS
+========================================================= */
+
+.output-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 12px;
+}
+
+.output-card {
+  padding: 17px;
+
+  border: 1px solid #e0e8eb;
+  border-radius: 10px;
+
+  background: #f8fbfc;
+}
+
+.output-card span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 0.78rem;
+
+  opacity: 0.65;
+}
+
+.output-card strong {
+  font-size: 1.25rem;
+
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =========================================================
+   EQUATION
+========================================================= */
+
+.equation-box {
+  margin-top: 22px;
+
+  padding: 20px;
+
+  border-radius: 10px;
+
+  background: #f3f8fa;
+
+  text-align: center;
+}
+
+.equation-box span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 0.75rem;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.05em;
+
+  opacity: 0.6;
+}
+
+.equation-box strong {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 1.5rem;
+
+  font-family: Georgia, serif;
+}
+
+.equation-box p {
+  margin: 0;
+
+  font-size: 0.8rem;
+
+  line-height: 1.5;
+
+  opacity: 0.65;
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+.history-panel {
+  margin-top: 25px;
+
+  padding: 25px;
+}
+
+.history-header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.history-header h3 {
+  margin-bottom: 5px;
+}
+
+.history-header p {
+  margin: 0;
+
+  font-size: 0.85rem;
+
+  opacity: 0.6;
+}
+
+.history-status {
+  padding: 7px 12px;
+
+  border-radius: 20px;
+
+  background: #f2f7f8;
+
+  font-size: 0.75rem;
+}
+
+
+/* =========================================================
+   CHART PLACEHOLDER
+========================================================= */
+
+.chart-placeholder {
+  height: 280px;
+
+  margin-top: 20px;
+
+  border: 1px dashed #c5d5da;
+  border-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+
+  color: #78909c;
+}
+
+.chart-placeholder span {
+  font-size: 0.95rem;
+}
+
+.chart-placeholder small {
+  font-size: 0.75rem;
+
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .simulator-layout {
+    grid-template-columns:
+      repeat(2, minmax(280px, 1fr));
+  }
+
+  .bottle-panel {
+    grid-row: span 2;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .cloud-simulator {
+    padding: 35px 15px;
+  }
+
+  .simulator-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .bottle-panel {
+    grid-row: auto;
+  }
+
+  .output-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
